@@ -7,14 +7,15 @@ from utilities.configurations import getConfig
 
 host = getConfig()['Server']['host']
 username = getConfig()['Server']['username']
-key_path = "/Users/mrinmoy/Documents-Local/Documents/Development/MBAWS001.pem"  # Path to your SSH private key file
+key_path = "/Users/mrinmoy/Library/Mobile Documents/com~apple~CloudDocs/Documents/Development/Python/MBAWS001.pem"
+# Path to your SSH private key file
 # password = getConfig()['Server']['password']
 # port = getConfig()['Server']['port']
 
 
 # command = "cat demofile"
-# command = "ls -al"  # Example: list directory contents
-command = "cat demofile"  # Example: list directory contents
+command = "ls -al"  # Example: list directory contents
+# command = "cat demofile"  # Example: list directory contents
 
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
