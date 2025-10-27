@@ -7,7 +7,8 @@ from utilities.configurations import getConfig
 
 host = getConfig()['Server']['host']
 username = getConfig()['Server']['username']
-key_path = "/Users/mrinmoy/Library/Mobile Documents/com~apple~CloudDocs/Documents/Development/Python/MBAWS001.pem"
+# key_path = "/Users/mrinmoy/Library/Mobile Documents/com~apple~CloudDocs/Documents/Development/Python/MBAWS001.pem"
+key_path = "/Users/mrinmoy/Documents-Local/Documents/Development/MBAWS001.pem"
 # Path to your SSH private key file
 # password = getConfig()['Server']['password']
 # port = getConfig()['Server']['port']
@@ -31,8 +32,6 @@ lines = stdout.readlines()
 # print(lines[0])
 print(lines)
 
-
-
 # Upload Files
 sftp = ssh.open_sftp()
 destinationPath = "script.py"
@@ -49,10 +48,7 @@ stdin, stdout, stderr = ssh.exec_command("python3 script.py")
 # Download the file to local system
 sftp.get("loanasa.csv", "outputFiles/loanasa.csv")
 
-
 # Parse Output file CSV
-
-
 
 
 ssh.close()
