@@ -1,6 +1,5 @@
+import csv
 import paramiko as paramiko
-from idna.idnadata import scripts
-
 from utilities.configurations import getConfig
 
 # Start Connections
@@ -15,8 +14,8 @@ key_path = "/Users/mrinmoy/Documents-Local/Documents/Development/MBAWS001.pem"
 
 
 # command = "cat demofile"
-# command = "ls"  # Example: list directory contents
-command = "cat demofile"  # Example: list directory contents
+command = "ls -a"  # Example: list directory contents
+# command = "cat demofile"  # Example: list directory contents
 
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -49,6 +48,11 @@ stdin, stdout, stderr = ssh.exec_command("python3 script.py")
 sftp.get("loanasa.csv", "outputFiles/loanasa.csv")
 
 # Parse Output file CSV
-
+with open("outputFiles/loanasa.csv", "r") as csvFile:
+    csvReader = csv.reader(csvFile, delimiter=",")
+    for row in csvReader:
+        if row[0] == "32321":
+            assert row[1] == "rejected"
+        # print(row[0] + " " + row[1])
 
 ssh.close()
