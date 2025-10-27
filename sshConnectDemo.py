@@ -14,8 +14,8 @@ key_path = "/Users/mrinmoy/Library/Mobile Documents/com~apple~CloudDocs/Document
 
 
 # command = "cat demofile"
-command = "ls -al"  # Example: list directory contents
-# command = "cat demofile"  # Example: list directory contents
+# command = "ls"  # Example: list directory contents
+command = "cat demofile"  # Example: list directory contents
 
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -24,12 +24,14 @@ ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 ssh.connect(hostname=host, username=username, key_filename=key_path)
 
 # Run commands
-# stdin, stdout, stderr = ssh.exec_command("ls -al")
 stdin, stdout, stderr = ssh.exec_command(command)
 # print(stdout.readlines())
 # print("Output:\n", stdout.read().decode())
 lines = stdout.readlines()
-print(lines[0])
+# print(lines[0])
+print(lines)
+
+
 
 # Upload Files
 sftp = ssh.open_sftp()
@@ -46,5 +48,11 @@ stdin, stdout, stderr = ssh.exec_command("python3 script.py")
 
 # Download the file to local system
 sftp.get("loanasa.csv", "outputFiles/loanasa.csv")
+
+
+# Parse Output file CSV
+
+
+
 
 ssh.close()
