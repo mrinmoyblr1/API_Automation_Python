@@ -12,5 +12,11 @@ print(movieTable.prettify())
 
 rows = movieTable.findAll('tr')
 for row in rows:
-    tds = row.findAll('td')
-    print(tds)
+    rowdata = row.findAll('td')
+    print(rowdata[1].a.text)  # To get title
+    subUrl = print(rowdata[2].a['href'])
+    subData = requests.get("https://www.imdb.com/" + subUrl)
+    childSoup = BeautifulSoup(subData.content, 'html.parser')
+    genere = childSoup.find('div', {'class': 'canwrap'})
+    print(genere.a.text)
+    
